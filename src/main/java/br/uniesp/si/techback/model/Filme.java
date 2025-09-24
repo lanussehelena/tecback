@@ -34,4 +34,5 @@ public class Filme {
 
     @Column(name = "classificacao_indicativa", length = 10)
     private String classificacaoIndicativa;
+
 }
