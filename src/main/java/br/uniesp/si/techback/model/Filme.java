@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -34,5 +35,14 @@ public class Filme {
 
     @Column(name = "classificacao_indicativa", length = 10)
     private String classificacaoIndicativa;
+
+    @ManyToMany
+    @JoinTable(
+            name = "filme_genero", // tabela intermediária
+            joinColumns = @JoinColumn(name = "filme_id"),
+            inverseJoinColumns = @JoinColumn(name = "genero_id")
+    )
+    private List<Genero> generos;
+
 
 }

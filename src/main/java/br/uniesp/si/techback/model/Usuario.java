@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity // 🏠 Isso diz: "Essa classe é uma casinha no banco de dados"
@@ -49,5 +50,16 @@ public class Usuario {
     @Column(name = "atualizado_em", nullable = false)
     private LocalDateTime atualizadoEm;
     // 🔄 Quando o usuário foi atualizado pela última vez.
+
+    @ManyToOne
+    @JoinColumn(name = "plano_id")
+    private Plano plano;
+// 🏷️ O plano ao qual o usuário está vinculado
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Enderecos> enderecos;
+// 📦 Lista de endereços do usuário
+
+
 
 }
